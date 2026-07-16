@@ -3,7 +3,6 @@
 The diabetes dataset had to be cleaned and preprocessed before we could use it to build machine learning models. This step is really important because it makes sure the data is accurate and consistent. If we do not do this our models might not work well or might even give us wrong results.
 
 
-
 # Step 1: Import Required Libraries
 
 import pandas as pd
