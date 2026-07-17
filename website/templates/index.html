@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>🩺 Diabetes Prediction System</h1>
+
+        <p class="subtitle">
+            Enter patient information to estimate the probability of diabetes.
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <div class="grid">
+
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" name="Age" min="1" max="120" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Gender</label>
+                    <select name="Gender">
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Polyuria
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Needing to urinate much more often than usual, including waking up several times at night.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Polyuria">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Polydipsia
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Feeling unusually thirsty and drinking much more water than normal.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Polydipsia">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Sudden Weight Loss
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Losing weight unexpectedly without dieting or increasing physical activity.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="SuddenWeightLoss">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Weakness
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Feeling tired, weak, or lacking energy during normal daily activities.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Weakness">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Polyphagia
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Feeling hungry more often than usual, even after eating.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Polyphagia">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Genital Thrush
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                A fungal infection that may cause itching, redness, irritation, or unusual discharge in the genital area.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="GenitalThrush">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Visual Blurring
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Difficulty seeing clearly or experiencing blurry eyesight.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="VisualBlurring">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Itching
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Ongoing itching or irritation of the skin.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Itching">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Irritability
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Becoming annoyed, frustrated, or angry more easily than usual.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Irritability">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Delayed Healing
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Cuts, scratches, or wounds take longer than normal to heal.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="DelayedHealing">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Partial Paresis
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Reduced strength or difficulty moving one or more parts of the body.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="PartialParesis">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Muscle Stiffness
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Muscles feel tight, making movement uncomfortable or difficult.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="MuscleStiffness">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Alopecia
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Noticeable loss or thinning of hair from the scalp or other parts of the body.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Alopecia">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Obesity
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Having excess body fat that may increase the risk of health problems, including diabetes.
+                            </span>
+                        </span>
+                    </label>
+                    <select name="Obesity">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button class="btn">Predict Diabetes</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

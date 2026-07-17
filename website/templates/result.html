@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>🩺 Diabetes Prediction Result</h1>
+
+        <p class="subtitle">
+            AI-based prediction using Random Forest & SHAP
+        </p>
+
+        <div class="result-box">
+
+            <h2>Prediction</h2>
+
+            {% if prediction=="Positive" %}
+                <h1 class="positive">Likely Diabetic</h1>
+            {% else %}
+                <h1 class="negative">Unlikely Diabetic</h1>
+            {% endif %}
+
+        </div>
+
+        <div class="risk-box">
+
+            <h2>Risk Level</h2>
+
+            {% if risk=="High" %}
+                <span class="risk high">🔴 High Risk</span>
+            {% elif risk=="Moderate" %}
+                <span class="risk moderate">🟡 Moderate Risk</span>
+            {% else %}
+                <span class="risk low">🟢 Low Risk</span>
+            {% endif %}
+
+        </div>
+
+        <div class="probability">
+
+            <h2>Probability of Diabetes</h2>
+
+            <div class="progress">
+                <div class="progress-bar" style="width:{{ probability }}%;"></div>
+            </div>
+
+            <h1>{{ probability }}%</h1>
+
+        </div>
+
+        <div class="shap">
+
+            <h2>Top Features Influencing Prediction</h2>
+
+            <table>
+
+                <tr>
+                    <th>Feature</th>
+                    <th>Contribution</th>
+                </tr>
+
+                {% for i in range(feature_names|length) %}
+                <tr>
+                    <td>
+
+                        {{ feature_names[i] }}
+                    
+                        {% if feature_names[i] == "Polyuria" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Frequent urination (passing urine much more often than usual).
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Polydipsia" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Excessive thirst even after drinking enough water.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Polyphagia" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Excessive hunger or eating more than usual.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "GenitalThrush" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                A fungal infection around the genital area causing itching or irritation.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "VisualBlurring" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Blurred or unclear vision.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "SuddenWeightLoss" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Losing weight unexpectedly without dieting or exercising.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Weakness" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Feeling unusually tired or lacking physical strength.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Itching" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Persistent irritation causing the urge to scratch.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Irritability" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Becoming easily annoyed, frustrated, or angry.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "DelayedHealing" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Cuts or wounds taking longer than usual to heal.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "PartialParesis" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Weakness or reduced movement in part of the body.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "MuscleStiffness" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Tight or rigid muscles that are difficult to move.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Alopecia" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Hair loss from the scalp or other parts of the body.
+                            </span>
+                        </span>
+                    
+                        {% elif feature_names[i] == "Obesity" %}
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">
+                                Excess body fat that increases the risk of developing diabetes.
+                            </span>
+                        </span>
+                    
+                        {% endif %}
+                    
+                    </td>
+                    <td>{{ feature_values[i] }}%</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <div class="explanation">
+
+            <h2>AI Explanation</h2>
+
+            <p>
+                Based on the information provided, the Random Forest model predicts
+                <strong>{{ prediction }}</strong> with an estimated probability of
+                <strong>{{ probability }}%</strong>.
+            </p>
+
+            <p>
+                The SHAP analysis identifies the features above as having the
+                greatest influence on this prediction.
+            </p>
+
+        </div>
+
+        <div class="disclaimer">
+
+            <strong>⚠ Disclaimer</strong>
+
+            <p>
+                This prediction is generated using a Machine Learning model and
+                is intended for educational purposes only. It should not replace
+                professional medical diagnosis or advice.
+            </p>
+
+        </div>
+
+        <a href="/">
+            <button class="btn">
+                Predict Another Patient
+            </button>
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>
