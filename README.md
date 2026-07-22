@@ -9,5 +9,5 @@ explanation of model selection is in notebooks folder named : "model selection r
 
 feel free to ask AI to explain you from a beginner stage :)
 
-you can reach you to me on : 
+you can reach me on : 
 linkdin : https://www.linkedin.com/in/payalkadam917
