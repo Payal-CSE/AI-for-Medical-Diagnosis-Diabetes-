@@ -1,5 +1,8 @@
 # AI-for-Medical-Diagnosis-Diabetes-
 
+data pre-processing , feature extraction and visualization done by Aryan Khanna 
+for any information reach out to him at : aryan10082002@gmail.com
+
 this project is to show that how prone a person is to diabetes
 im using SHARP here.
 normal Bayes model can also be used but we wanna show how much each factor is affecting the patient to be more prone to the disease
