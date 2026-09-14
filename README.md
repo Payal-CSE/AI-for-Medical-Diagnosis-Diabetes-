@@ -1,6 +1,6 @@
 # AI-for-Medical-Diagnosis-Diabetes-
 
-data pre-processing , feature extraction and visualization done by Aryan Khanna 
+data pre-processing , feature extraction and visualization done by #Aryan Khanna 
 for any information reach out to him at : aryan10082002@gmail.com
 
 this project is to show that how prone a person is to diabetes
